@@ -12,14 +12,14 @@ function Footer() {
             <span>Made with 🖤 by 22cs 078 || 074 || 040</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
+            <Link href="/Team" className="text-gray-400 hover:text-gray-300 transition-colors">
               Team
             </Link>
             <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
               Privacy
             </Link>
             <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
-              terms
+              Contacts
             </Link>
           </div>
         </div>

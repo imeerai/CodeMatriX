@@ -3,7 +3,6 @@
 ## 📌 Introduction
 CodeMatriX is a **modern online coding platform** designed for developers to write, test, and share code in multiple programming languages. Built using **Next.js 15**, it offers real-time execution, seamless authentication, and a customizable development experience. The project is tailored for **collaborative coding, education, and professional development**, providing a feature-rich environment for users.
 
-CodeMatriX is part of our **Web Engineering course project**, showcasing best practices in **full-stack web development**, database management, and API integrations.
 
 ## 👥 Team Members & Roles
 
