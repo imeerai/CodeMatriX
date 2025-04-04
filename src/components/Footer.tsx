@@ -1,4 +1,4 @@
-import { Blocks } from "lucide-react";
+import { Blocks, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 function Footer() {
