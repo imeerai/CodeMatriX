@@ -11,14 +11,9 @@ function Footer() {
             <Blocks className="size-5" />
             <span>Made with 🖤 by 22cs 078 || 074 || 040</span>
           </div>
+            
           <div className="flex items-center gap-6">
-            <Link href="/Team" className="text-gray-400 hover:text-gray-300 transition-colors">
-              Terms
-            </Link>
-            <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
-              Contacts
-            </Link>
-            <Link
+          <Link
               href="https://github.com/imeerai/codematrix"
               className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-amber-500/20 hover:border-amber-500/40 bg-gradient-to-r from-amber-500/10 
                 to-orange-500/10 hover:from-amber-500/20 hover:to-orange-500/20 
@@ -28,7 +23,14 @@ function Footer() {
                 View Code
               </span>
             </Link>
-            
+        
+            <Link href="/Team" className="text-gray-400 hover:text-gray-300 transition-colors">
+              Terms
+            </Link>
+            <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
+              Contacts
+            </Link>
+           
           </div>
         </div>
       </div>
