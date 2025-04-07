@@ -45,7 +45,7 @@ async function Header() {
                 CodeMatriX
               </span>
               <span className="block text-xs text-blue-400/60 font-medium">
-                Interactive Code Editor
+                Online IDE..
               </span>
             </div>
           </Link>
