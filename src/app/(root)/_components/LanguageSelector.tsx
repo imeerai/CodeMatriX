@@ -84,8 +84,14 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full right-0 sm:left-0 mt-2 w-56 sm:w-64 bg-[#1e1e2e]/95 backdrop-blur-xl
+            className="absolute top-full right-0 mt-2 w-56 sm:w-64 bg-[#1e1e2e]/95 backdrop-blur-xl
            rounded-xl border border-[#313244] shadow-2xl py-2 z-50"
+            style={{
+              left: isMobile ? "auto" : 0,
+              right: isMobile ? 0 : "auto",
+              maxHeight: "80vh",
+              overflowY: "auto",
+            }}
           >
             <div className="px-3 pb-2 mb-2 border-b border-gray-800/50">
               <p className="text-xs font-medium text-gray-400">Select Language</p>
