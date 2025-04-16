@@ -1,37 +1,39 @@
-import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
-import { Activity, Code2, Star, Timer, TrendingUp, Trophy, UserIcon, Zap } from "lucide-react";
-import { motion } from "framer-motion";
-import { Id } from "../../../../convex/_generated/dataModel";
+"use client"
 
-import { UserResource } from "@clerk/types";
+import { useQuery } from "convex/react"
+import { api } from "../../../../convex/_generated/api"
+import { Activity, Code2, Star, Timer, TrendingUp, Trophy, UserIcon, Zap } from "lucide-react"
+import { motion } from "framer-motion"
+import type { Id } from "../../../../convex/_generated/dataModel"
+
+import type { UserResource } from "@clerk/types"
 
 interface ProfileHeaderProps {
   userStats: {
-    totalExecutions: number;
-    languagesCount: number;
-    languages: string[];
-    last24Hours: number;
-    favoriteLanguage: string;
-    languageStats: Record<string, number>;
-    mostStarredLanguage: string;
-  };
+    totalExecutions: number
+    languagesCount: number
+    languages: string[]
+    last24Hours: number
+    favoriteLanguage: string
+    languageStats: Record<string, number>
+    mostStarredLanguage: string
+  }
   userData: {
-    _id: Id<"users">;
-    _creationTime: number;
-    proSince?: number | undefined;
-    lemonSqueezyCustomerId?: string | undefined;
-    lemonSqueezyOrderId?: string | undefined;
-    name: string;
-    userId: string;
-    email: string;
-    isPro: boolean;
-  };
-  user: UserResource;
+    _id: Id<"users">
+    _creationTime: number
+    proSince?: number | undefined
+    lemonSqueezyCustomerId?: string | undefined
+    lemonSqueezyOrderId?: string | undefined
+    name: string
+    userId: string
+    email: string
+    isPro: boolean
+  }
+  user: UserResource
 }
 
 function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
-  const starredSnippets = useQuery(api.snippets.getStarredSnippets);
+  const starredSnippets = useQuery(api.snippets.getStarredSnippets)
   const STATS = [
     {
       label: "Code Executions",
@@ -72,44 +74,44 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
         icon: TrendingUp,
       },
     },
-  ];
+  ]
 
   return (
     <div
-      className="relative mb-8 bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-2xl p-8 border
+      className="relative mb-4 sm:mb-6 md:mb-8 bg-gradient-to-br from-[#12121a] to-[#1a1a2e] rounded-2xl p-4 sm:p-6 md:p-8 border
      border-gray-800/50 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px]" />
-      <div className="relative flex items-center gap-8">
+      <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
         <div className="relative group">
           <div
             className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full 
           blur-xl opacity-50 group-hover:opacity-75 transition-opacity"
           />
           <img
-            src={user.imageUrl}
+            src={user.imageUrl || "/placeholder.svg"}
             alt="Profile"
-            className="w-24 h-24 rounded-full border-4 border-gray-800/50 relative z-10 group-hover:scale-105 transition-transform"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-gray-800/50 relative z-10 group-hover:scale-105 transition-transform"
           />
           {userData.isPro && (
             <div
-              className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-500 to-purple-600 p-2
+              className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-500 to-purple-600 p-1.5 sm:p-2
              rounded-full z-20 shadow-lg animate-pulse"
             >
-              <Zap className="w-4 h-4 text-white" />
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
             </div>
           )}
         </div>
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-3xl font-bold text-white">{userData.name}</h1>
+        <div className="text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-3 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">{userData.name}</h1>
             {userData.isPro && (
               <span className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-sm font-medium">
                 Pro Member
               </span>
             )}
           </div>
-          <p className="text-gray-400 flex items-center gap-2">
+          <p className="text-gray-400 flex items-center justify-center sm:justify-start gap-2">
             <UserIcon className="w-4 h-4" />
             {userData.email}
           </p>
@@ -117,7 +119,7 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8">
         {STATS.map((stat, index) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -133,27 +135,27 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
             />
 
             {/* Content */}
-            <div className="relative p-6">
+            <div className="relative p-4 sm:p-6">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-medium text-gray-400">{stat.description}</span>
+                    <span className="text-xs sm:text-sm font-medium text-gray-400">{stat.description}</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                     {typeof stat.value === "number" ? stat.value.toLocaleString() : stat.value}
                   </h3>
-                  <p className="text-sm text-gray-400 mt-1">{stat.label}</p>
+                  <p className="text-xs sm:text-sm text-gray-400 mt-1">{stat.label}</p>
                 </div>
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} bg-opacity-10`}>
-                  <stat.icon className="w-5 h-5 text-white" />
+                <div className={`p-2 sm:p-3 rounded-xl bg-gradient-to-br ${stat.color} bg-opacity-10`}>
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
               </div>
 
               {/* Additional metric */}
-              <div className="flex items-center gap-2 pt-4 border-t border-gray-800/50">
-                <stat.metric.icon className="w-4 h-4 text-gray-500" />
-                <span className="text-sm text-gray-400">{stat.metric.label}:</span>
-                <span className="text-sm font-medium text-white">{stat.metric.value}</span>
+              <div className="flex items-center gap-2 pt-3 sm:pt-4 border-t border-gray-800/50">
+                <stat.metric.icon className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                <span className="text-xs sm:text-sm text-gray-400">{stat.metric.label}:</span>
+                <span className="text-xs sm:text-sm font-medium text-white">{stat.metric.value}</span>
               </div>
             </div>
 
@@ -163,6 +165,6 @@ function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
         ))}
       </div>
     </div>
-  );
+  )
 }
-export default ProfileHeader;
+export default ProfileHeader
