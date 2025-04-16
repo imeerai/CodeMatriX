@@ -1,48 +1,54 @@
-import { useCodeEditorStore } from "@/store/useCodeEditorStore";
-import { useMutation } from "convex/react";
-import { useState } from "react";
-import { api } from "../../../../convex/_generated/api";
-import { X } from "lucide-react";
-import toast from "react-hot-toast";
+"use client"
+
+import type React from "react"
+
+import { useCodeEditorStore } from "@/store/useCodeEditorStore"
+import { useMutation } from "convex/react"
+import { useState } from "react"
+import { api } from "../../../../convex/_generated/api"
+import { X } from "lucide-react"
+import toast from "react-hot-toast"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 function ShareSnippetDialog({ onClose }: { onClose: () => void }) {
-  const [title, setTitle] = useState("");
-  const [isSharing, setIsSharing] = useState(false);
-  const { language, getCode } = useCodeEditorStore();
-  const createSnippet = useMutation(api.snippets.createSnippet);
+  const [title, setTitle] = useState("")
+  const [isSharing, setIsSharing] = useState(false)
+  const { language, getCode } = useCodeEditorStore()
+  const createSnippet = useMutation(api.snippets.createSnippet)
+  const isMobile = useMediaQuery("(max-width: 640px)")
 
   const handleShare = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setIsSharing(true);
+    setIsSharing(true)
 
     try {
-      const code = getCode();
-      await createSnippet({ title, language, code });
-      onClose();
-      setTitle("");
-      toast.success("Snippet shared successfully");
+      const code = getCode()
+      await createSnippet({ title, language, code })
+      onClose()
+      setTitle("")
+      toast.success("Snippet shared successfully")
     } catch (error) {
-      console.log("Error creating snippet:", error);
-      toast.error("Error creating snippet");
+      console.log("Error creating snippet:", error)
+      toast.error("Error creating snippet")
     } finally {
-      setIsSharing(false);
+      setIsSharing(false)
     }
-  };
+  }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-[#1e1e2e] rounded-lg p-6 w-full max-w-md">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-white">Share Snippet</h2>
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-[#1e1e2e] rounded-lg p-4 sm:p-6 w-full max-w-xs sm:max-w-md">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <h2 className="text-base sm:text-xl font-semibold text-white">Share Snippet</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-300">
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
         <form onSubmit={handleShare}>
           <div className="mb-4">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-400 mb-2">
+            <label htmlFor="title" className="block text-xs sm:text-sm font-medium text-gray-400 mb-1 sm:mb-2">
               Title
             </label>
             <input
@@ -50,24 +56,24 @@ function ShareSnippetDialog({ onClose }: { onClose: () => void }) {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 bg-[#181825] border border-[#313244] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-2 sm:px-3 py-1.5 sm:py-2 bg-[#181825] border border-[#313244] rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter snippet title"
               required
             />
           </div>
 
-          <div className="flex justify-end gap-3">
+          <div className="flex justify-end gap-2 sm:gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-400 hover:text-gray-300"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-400 hover:text-gray-300"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSharing}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 
+              className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 
               disabled:opacity-50"
             >
               {isSharing ? "Sharing..." : "Share"}
@@ -76,6 +82,6 @@ function ShareSnippetDialog({ onClose }: { onClose: () => void }) {
         </form>
       </div>
     </div>
-  );
+  )
 }
-export default ShareSnippetDialog;
+export default ShareSnippetDialog
