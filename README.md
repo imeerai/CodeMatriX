@@ -10,7 +10,7 @@ CodeMatriX is a **modern online coding platform** designed for developers to wri
 |------|---------|------|
 | **Zameer Abbas** | 22CS078 | Backend & Database (Convex, APIs, Authentication) |
 | **Anaz Arain** | 22CS074 | Frontend Development (Next.js, UI/UX, Tailwind) |
-| **Alishba Choti** | 22CS040 | Integrations & Deployment (Webhook, Payment, Hosting) |
+| **Alishba sammo** | 22CS040 | Integrations & Deployment (Webhook, Payment, Hosting) |
 
 ## ✨ Features
 

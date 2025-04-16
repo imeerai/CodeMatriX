@@ -38,7 +38,7 @@ const teamMembers = [
     },
   },
   {
-    name: "Alishba Choti",
+    name: "Alishba khan",
     rollNo: "22CS040",
     role: "Integrations & Deployment",
     description: "Handles Webhooks, Payment systems, and Hosting",
