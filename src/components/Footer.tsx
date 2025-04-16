@@ -24,8 +24,8 @@ function Footer() {
               </span>
             </Link>
         
-            <Link href="/Team" className="text-gray-400 hover:text-gray-300 transition-colors">
-              Terms
+            <Link href="/team" className="text-gray-400 hover:text-gray-300 transition-colors">
+              Team
             </Link>
             <Link href="/" className="text-gray-400 hover:text-gray-300 transition-colors">
               Contacts
