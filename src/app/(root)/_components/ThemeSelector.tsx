@@ -44,23 +44,23 @@ function ThemeSelector() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-auto sm:w-48 group relative flex items-center gap-2 px-2 sm:px-4 py-1.5 sm:py-2.5 bg-[#1e1e2e]/80 hover:bg-[#262637] 
+        className="w-auto group relative flex items-center gap-1.5 px-2 py-1.5 bg-[#1e1e2e]/80 hover:bg-[#262637] 
         rounded-lg transition-all duration-200 border border-gray-800/50 hover:border-gray-700"
       >
         {/* hover state bg decorator */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
 
-        <Palette className="w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-colors" />
+        <Palette className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-300 transition-colors" />
 
         {!isMobile && (
-          <span className="text-xs sm:text-sm text-gray-300 min-w-[60px] sm:min-w-[80px] text-left group-hover:text-white transition-colors">
+          <span className="text-xs text-gray-300 min-w-[50px] text-left group-hover:text-white transition-colors">
             {currentTheme?.label}
           </span>
         )}
 
         {/* color indicator */}
         <div
-          className="relative w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-gray-600 group-hover:border-gray-500 transition-colors"
+          className="relative w-3 h-3 rounded-full border border-gray-600 group-hover:border-gray-500 transition-colors"
           style={{ background: currentTheme?.color }}
         />
       </motion.button>
@@ -72,11 +72,11 @@ function ThemeSelector() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 w-56 sm:w-full min-w-[200px] bg-[#1e1e2e]/95 
+            className="absolute top-full mt-2 w-48 bg-[#1e1e2e]/95 
             backdrop-blur-xl rounded-xl border border-[#313244] shadow-2xl py-2 z-50"
             style={{
-              left: isMobile ? "auto" : 0,
-              right: isMobile ? 0 : "auto",
+              left: "auto",
+              right: 0,
               maxHeight: "80vh",
               overflowY: "auto",
             }}
@@ -90,9 +90,9 @@ function ThemeSelector() {
                 key={t.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
                 className={`
-                relative group w-full flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2 sm:py-2.5 hover:bg-[#262637] transition-all duration-200
+                relative group w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#262637] transition-all duration-200
                 ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "text-gray-300"}
               `}
                 onClick={() => setTheme(t.id)}
@@ -106,21 +106,19 @@ function ThemeSelector() {
                 {/* icon */}
                 <div
                   className={`
-                flex items-center justify-center size-6 sm:size-8 rounded-lg
+                flex items-center justify-center size-8 rounded-lg
                 ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
                 group-hover:scale-110 transition-all duration-200
               `}
                 >
-                  {THEME_ICONS[t.id] || <CircleOff className="w-3 h-3 sm:w-4 sm:h-4" />}
+                  {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
                 </div>
                 {/* label */}
-                <span className="flex-1 text-xs sm:text-sm text-left group-hover:text-white transition-colors">
-                  {t.label}
-                </span>
+                <span className="flex-1 text-sm text-left group-hover:text-white transition-colors">{t.label}</span>
 
                 {/* color indicator */}
                 <div
-                  className="relative size-3 sm:size-4 rounded-full border border-gray-600 
+                  className="relative size-4 rounded-full border border-gray-600 
                 group-hover:border-gray-500 transition-colors"
                   style={{ background: t.color }}
                 />

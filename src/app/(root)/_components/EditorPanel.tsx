@@ -52,23 +52,23 @@ function EditorPanel() {
   if (!mounted) return null
 
   return (
-    <div className="relative w-full">
-      <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-3 sm:p-4 md:p-6">
+    <div className="relative w-full mt-6">
+      <div className="relative bg-[#12121a]/95 backdrop-blur rounded-xl border border-white/[0.05] shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between mb-3 sm:mb-4">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#1e1e2e] ring-1 ring-white/5">
+        <div className="flex items-center justify-between p-4 md:p-5 border-b border-white/[0.05]">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#1e1e2e] ring-1 ring-white/5">
               <Image
                 src={"/" + language + ".png"}
                 alt="Logo"
-                width={20}
-                height={20}
+                width={24}
+                height={24}
                 className="w-5 h-5 sm:w-6 sm:h-6"
               />
             </div>
             <div>
-              <h2 className="text-xs sm:text-sm font-medium text-white">Code Editor</h2>
-              <p className="text-[10px] sm:text-xs text-gray-500">Write and execute your code</p>
+              <h2 className="text-sm font-medium text-white">Code Editor</h2>
+              <p className="text-xs text-gray-500">Write and execute your code</p>
             </div>
           </div>
 
@@ -84,22 +84,20 @@ function EditorPanel() {
 
           {/* Desktop Controls */}
           {!isMobile && (
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3">
               {/* Font Size Slider */}
-              <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 sm:py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
-                <TypeIcon className="size-3 sm:size-4 text-gray-400" />
-                <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
+                <TypeIcon className="size-4 text-gray-400" />
+                <div className="flex items-center gap-3">
                   <input
                     type="range"
                     min="12"
                     max="24"
                     value={fontSize}
                     onChange={(e) => handleFontSizeChange(Number.parseInt(e.target.value))}
-                    className="w-16 sm:w-20 h-1 bg-gray-600 rounded-lg cursor-pointer"
+                    className="w-20 h-1 bg-gray-600 rounded-lg cursor-pointer"
                   />
-                  <span className="text-xs sm:text-sm font-medium text-gray-400 min-w-[1.5rem] sm:min-w-[2rem] text-center">
-                    {fontSize}
-                  </span>
+                  <span className="text-sm font-medium text-gray-400 min-w-[2rem] text-center">{fontSize}</span>
                 </div>
               </div>
 
@@ -107,10 +105,10 @@ function EditorPanel() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleRefresh}
-                className="p-1.5 sm:p-2 bg-[#1e1e2e] hover:bg-[#2a2a3a] rounded-lg ring-1 ring-white/5 transition-colors"
+                className="p-2 bg-[#1e1e2e] hover:bg-[#2a2a3a] rounded-lg ring-1 ring-white/5 transition-colors"
                 aria-label="Reset to default code"
               >
-                <RotateCcwIcon className="size-3 sm:size-4 text-gray-400" />
+                <RotateCcwIcon className="size-4 text-gray-400" />
               </motion.button>
 
               {/* Share Button */}
@@ -118,11 +116,11 @@ function EditorPanel() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setIsShareDialogOpen(true)}
-                className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg overflow-hidden bg-gradient-to-r
-                from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r
+                 from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
               >
-                <ShareIcon className="size-3 sm:size-4 text-white" />
-                <span className="text-xs sm:text-sm font-medium text-white">Share</span>
+                <ShareIcon className="size-4 text-white" />
+                <span className="text-sm font-medium text-white">Share</span>
               </motion.button>
             </div>
           )}
@@ -130,7 +128,7 @@ function EditorPanel() {
 
         {/* Mobile Menu */}
         {isMobile && isMobileMenuOpen && (
-          <div className="mb-3 p-3 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5 space-y-3">
+          <div className="p-4 bg-[#1e1e2e] border-b border-white/[0.05] space-y-3">
             {/* Font Size Control */}
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-gray-400">Font Size</span>
@@ -170,10 +168,10 @@ function EditorPanel() {
         )}
 
         {/* Editor */}
-        <div className="relative group rounded-xl overflow-hidden ring-1 ring-white/[0.05]">
+        <div className="relative">
           {clerk.loaded && (
             <Editor
-              height={isMobile ? "300px" : isTablet ? "400px" : "600px"}
+              height={isMobile ? "350px" : isTablet ? "450px" : "600px"}
               language={LANGUAGE_CONFIG[language].monacoLanguage}
               onChange={handleEditorChange}
               theme={theme}
@@ -184,7 +182,7 @@ function EditorPanel() {
                 fontSize,
                 automaticLayout: true,
                 scrollBeyondLastLine: false,
-                padding: { top: isMobile ? 8 : 16, bottom: isMobile ? 8 : 16 },
+                padding: { top: isMobile ? 12 : 16, bottom: isMobile ? 12 : 16 },
                 renderWhitespace: "selection",
                 fontFamily: '"Fira Code", "Cascadia Code", Consolas, monospace',
                 fontLigatures: true,
